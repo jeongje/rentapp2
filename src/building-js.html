@@ -1,5 +1,36 @@
 <script>
 
 
-    
+    document.addEventListener('DOMContentLoaded', function () {        
+
+        document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+    });
+
+
+    function buttonClickAction() {
+
+        addBuilding();
+
+    }
+
+
+    function addBuilding() {
+
+        let buildingInfo = {};
+
+        buildingInfo.buildingName = document.getElementById("building_name").value;
+        buildingInfo.address = document.getElementById("address").value;
+        buildingInfo.memo = document.getElementById("building_memo").value;
+
+        google.script.run.submitBuilding(buildingInfo);
+
+        document.getElementById("building_name").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("building_memo").value = "";
+        M.updateTextFields();
+
+    }
+
+
 </script>

@@ -1,5 +1,38 @@
 <script>
 
 
-    
+    document.addEventListener('DOMContentLoaded', function () {        
+
+        document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+    });
+
+
+    function buttonClickAction() {
+
+        addPayment();
+        
+    }
+
+
+    function addPayment() {
+
+        let paymentInfo = {};
+
+        paymentInfo.tenantName = document.getElementById("tenant_name").value;
+        paymentInfo.paymentDate = document.getElementById("payment_date").value;
+        paymentInfo.amount = document.getElementById("amount").value;
+        paymentInfo.memo = document.getElementById("payment_memo").value;
+
+        google.script.run.submitPayment(paymentInfo);
+
+        document.getElementById("tenant_name").value = "";
+        document.getElementById("payment_date").value = "";
+        document.getElementById("amount").value = "";
+        document.getElementById("payment_memo").value = "";
+        M.updateTextFields();
+
+    }
+
+
 </script>

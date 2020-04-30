@@ -1,5 +1,48 @@
 <script>
 
 
-    
+    document.addEventListener('DOMContentLoaded', function () {        
+
+        document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+    });
+
+
+    function buttonClickAction() {
+
+        addContract();
+
+    }
+
+
+    function addContract() {
+
+        let contractInfo = {};
+
+        contractInfo.tenantName = document.getElementById("tenant_name").value;
+        contractInfo.building = document.getElementById("building").value;
+        contractInfo.unit = document.getElementById("unit").value;
+        contractInfo.deposit = document.getElementById("deposit").value;
+        contractInfo.monthly = document.getElementById("monthly").value;
+        contractInfo.maintenaceFee = document.getElementById("maintenance_fee").value;
+        contractInfo.startDate = document.getElementById("start_date").value;
+        contractInfo.endDate = document.getElementById("end_date").value;
+        contractInfo.memo = document.getElementById("contract_memo").value;
+
+        google.script.run.submitContract(contractInfo);
+
+        document.getElementById("tenant_name").value = "";
+        document.getElementById("building").value = "";
+        document.getElementById("unit").value = "";
+        document.getElementById("deposit").value = "";
+        document.getElementById("monthly").value = "";
+        document.getElementById("maintenance_fee").value = "";
+        document.getElementById("start_date").value = "";
+        document.getElementById("end_date").value = "";
+        document.getElementById("contract_memo").value = "";
+        M.updateTextFields();
+
+    }
+
+
 </script>

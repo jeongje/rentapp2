@@ -1,5 +1,36 @@
 <script>
 
 
-    
+    document.addEventListener('DOMContentLoaded', function () {        
+
+        document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+    });
+
+
+    function buttonClickAction() {
+
+        addTenant();
+
+    }
+
+
+    function addTenant() {
+
+        let tenantInfo = {};
+
+        tenantInfo.name = document.getElementById("name").value;
+        tenantInfo.phone = document.getElementById("phone").value;
+        tenantInfo.memo = document.getElementById("tenant_memo").value;
+
+        google.script.run.submitTenant(tenantInfo);
+
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("tenant_memo").value = "";
+        M.updateTextFields();
+
+    }
+
+
 </script>
