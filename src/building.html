@@ -11,27 +11,22 @@
         <div class="row">
             <div class="col s12">
                 <div class="input-field">
-                    <input id="tenant_name" type="text" class="validate">
-                    <label for="tenant_name">입주자</label>
+                    <input id="building_name" type="text" class="validate">
+                    <label for="building_name">건물이름</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="payment_date" type="text" class="validate">
-                    <label for="payment_date">입금일</label>
+                    <input id="address" type="text" class="validate">
+                    <label for="address">주소</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="amount" type="text" class="validate">
-                    <label for="amount">입금액</label>
-                </div>
-
-                <div class="input-field">
-                    <textarea id="payment_memo" class="materialize-textarea"></textarea>
-                    <label for="payment_memo">메모</label>
+                    <textarea id="building_memo" class="materialize-textarea"></textarea>
+                    <label for="building_memo">메모</label>
                 </div>
 
                 <div class="center-align">
-                    <button id="payment_btn" class="btn waves-effect waves-light grey darken-1" type="submit"
+                    <button id="building_btn" class="btn waves-effect waves-light grey darken-1" type="submit"
                         name="action">입력하기
                         <i class="material-icons right">send</i>
                     </button>
@@ -44,7 +39,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <?!= include("payment-js"); ?>
+    <?!= include("building-js"); ?>
 
 </body>
 

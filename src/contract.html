@@ -12,46 +12,51 @@
         <div class="row">
             <div class="col s12">
                 <div class="input-field">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">입주자</label>
+                    <input id="tenant_name" type="text" class="validate">
+                    <label for="tenant_name">입주자</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">건물+호수</label>
-
-                </div>
-                <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">보증금</label>
+                    <input id="building" type="text" class="validate">
+                    <label for="building">건물</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">월세</label>
+                    <input id="unit" type="text" class="validate">
+                    <label for="unit">호수</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">관리비</label>
+                    <input id="deposit" type="text" class="validate">
+                    <label for="deposit">보증금</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">계약시작일</label>
+                    <input id="monthly" type="text" class="validate">
+                    <label for="monthly">월세</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="phone" type="text" class="validate">
-                    <label for="phone">계약종료일</label>
+                    <input id="maintenance_fee" type="text" class="validate">
+                    <label for="maintenance_fee">관리비</label>
                 </div>
 
                 <div class="input-field">
-                    <textarea id="tenant_memo" class="materialize-textarea"></textarea>
-                    <label for="tenant_memo">메모</label>
+                    <input id="start_date" type="text" class="validate">
+                    <label for="start_date">계약시작일</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="end_date" type="text" class="validate">
+                    <label for="end_date">계약종료일</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="contract_memo" class="materialize-textarea"></textarea>
+                    <label for="contract_memo">메모</label>
                 </div>
                 <div class="center-align">
-                    <button id="tenant_btn" class="btn waves-effect waves-light grey darken-1" type="submit"
+                    <button id="contract_btn" class="btn waves-effect waves-light grey darken-1" type="submit"
                         name="action">입력하기
                         <i class="material-icons right">send</i>
                     </button>
