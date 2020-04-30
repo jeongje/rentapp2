@@ -1,17 +1,58 @@
 <script>
-
-
-    document.addEventListener('DOMContentLoaded', function () {        
+    document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+        let paymentDate = document.getElementById('payment_date');
+
+        M.Datepicker.init(paymentDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+        });
+
 
     });
 
 
     function buttonClickAction() {
 
-        addPayment();
-        
+        let toValidate = {
+
+            tenant_name: "입주자를 입력하세요.",
+            payment_date: "입금일을 입력하세요.",
+            amount: "입금액을 입력하세요.",
+
+        };
+
+        let idKeys = Object.keys(toValidate);
+        let allValid = true;
+
+        idKeys.forEach(function (id) {
+            let isValid = checkIfValid(id, toValidate[id]);
+            if (!isValid) {
+                allValid = false;
+            };
+        })
+
+        if (allValid) {
+            addPayment();
+        };
+
+        function checkIfValid(elId, message) {
+
+            let isValid = document.getElementById(elId).checkValidity();
+            
+            if (isValid) {
+                return true;
+            } else {
+                M.toast({
+                    html: message
+                });
+                return false;
+            };
+
+        };
+
     }
 
 
@@ -33,6 +74,4 @@
         M.updateTextFields();
 
     }
-
-
 </script>

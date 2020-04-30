@@ -1,7 +1,5 @@
 <script>
-
-
-    document.addEventListener('DOMContentLoaded', function () {        
+    document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById("btn").addEventListener("click", buttonClickAction);
 
@@ -10,7 +8,42 @@
 
     function buttonClickAction() {
 
-        addTenant();
+
+        let toValidate = {
+
+            name: "이름을 입력하세요.",
+            phone: "핸드폰을 입력하세요.",
+
+        };
+
+        let idKeys = Object.keys(toValidate);
+        let allValid = true;
+
+        idKeys.forEach(function (id) {
+            let isValid = checkIfValid(id, toValidate[id]);
+            if (!isValid) {
+                allValid = false;
+            }
+        });
+
+        if (allValid) {
+            addTenant();
+        };
+
+        function checkIfValid(elId, message) {
+
+            let isValid = document.getElementById(elId).checkValidity();
+
+            if (isValid) {
+                return true;
+            } else {
+                M.toast({
+                    html: message
+                });
+                return false;
+            };
+
+        };
 
     }
 
@@ -31,6 +64,4 @@
         M.updateTextFields();
 
     }
-
-
 </script>

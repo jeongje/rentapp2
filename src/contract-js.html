@@ -1,16 +1,67 @@
 <script>
-
-
-    document.addEventListener('DOMContentLoaded', function () {        
+    document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById("btn").addEventListener("click", buttonClickAction);
+
+        let startDate = document.getElementById('start_date');
+        let endDate = document.getElementById('end_date');
+
+        M.Datepicker.init(startDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+        });
+
+        M.Datepicker.init(endDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+        });
 
     });
 
 
     function buttonClickAction() {
 
-        addContract();
+
+        let toValidate = {
+
+            tenant_name: "입주자를 입력하세요.",
+            building: "건물을 입력하세요.",
+            unit: "호수를 입력하세요.",
+            deposit: "보증금을 입력하세요.",
+            monthly: "월세를 입력하세요.",
+            maintenance_fee: "관리비를 입력하세요.",
+            start_date: "계약시작일을 입력하세요.",
+            end_date: "계약종료일을 입력하세요.",
+
+        }
+
+        let idKeys = Object.keys(toValidate);
+        let allValid = true;
+
+        idKeys.forEach(function (id) {
+            let isValid = checkIfValid(id, toValidate[id]);
+            if (!isValid) {
+                allValid = false;
+            }
+        });
+
+        if (allValid) {
+            addContract();
+        };
+
+        function checkIfValid(elId, message) {
+
+            let isValid = document.getElementById(elId).checkValidity();
+
+            if (isValid) {
+                return true;
+            } else {
+                M.toast({
+                    html: message
+                });
+                return false;
+            };
+        };
 
     }
 
@@ -43,6 +94,4 @@
         M.updateTextFields();
 
     }
-
-
 </script>
