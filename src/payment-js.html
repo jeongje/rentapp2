@@ -76,6 +76,9 @@
         document.getElementById("payment_date").value = "";
         document.getElementById("amount").value = "";
         document.getElementById("payment_memo").value = "";
+
+        let tenantSelect = document.getElementById("tenant_name");
+        M.FormSelect.init(tenantSelect);
         M.updateTextFields();
 
     }
