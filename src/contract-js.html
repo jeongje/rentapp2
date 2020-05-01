@@ -16,6 +16,12 @@
             format: 'yyyy-mm-dd',
         });
 
+        let tenantName = document.getElementById('tenant_name');
+        let building = document.getElementById('building');
+
+        M.FormSelect.init(tenantName);
+        M.FormSelect.init(building);
+
     });
 
 

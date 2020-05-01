@@ -8,11 +8,19 @@
 
 <body>
     <div class="container">
+
+
         <div class="row">
             <div class="col s12">
+
                 <div class="input-field">
-                    <input id="tenant_name" type="text" class="validate" required>
-                    <label for="tenant_name">입주자</label>
+                    <select id="tenant_name" required>
+                        <option value="" disabled selected>입주자를 선택하세요</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                    <label>입주자</label>
                 </div>
 
                 <div class="input-field">
@@ -31,13 +39,14 @@
                 </div>
 
                 <div class="center-align">
-                    <button id="btn" class="btn waves-effect waves-light grey darken-1" type="submit"
-                        name="action">입력하기
+                    <button id="btn" class="btn waves-effect waves-light grey darken-1" type="submit" name="action">입력하기
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
+
             </div>
         </div>
+    </div>
 
     </div>
 
