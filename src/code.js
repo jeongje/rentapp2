@@ -13,20 +13,26 @@ function onOpen(e) {
 
 }
 
+
+
 function loadTenant() {
+    // autocomplete를 이용한 입주자 목록 전달 방식
 
     const ws = ss.getSheetByName("입주자");
 
     let tenantList = ws.getRange(2, 1, ws.getRange("C2").getDataRegion().getLastRow() - 1, 4).getValues();
 
-    let htmlArrayList = tenantList.map(function (tenant) {
-        let optionList = "<option>" + tenant[0] + " " + tenant[2] + " " + tenant[3].slice(-4) + "</option>";
-        return optionList
-    }).join("");
+    let dataOption = {}
+    tenantList.forEach(function (tenant) {
+        let optionList = tenant[0] + "_" + tenant[2] + "_" + tenant[3].slice(-4);
+        dataOption[optionList] = null;
+    });
 
-    return htmlArrayList;
+    return dataOption;
 
 }
+
+
 
 function loadBuilding() {
 

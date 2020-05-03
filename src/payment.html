@@ -14,11 +14,8 @@
             <div class="col s12">
 
                 <div class="input-field">
-                    <select id="tenant_name" required>
-                        <option value="" disabled selected>입주자를 선택하세요</option>
-                        <?!= tenantList; ?>
-                    </select>
-                    <label>입주자</label>
+                    <input type="text" id="tenant_name" class="autocomplete" required>
+                    <label for="tenant_name">입주자(검색)</label>
                 </div>
 
                 <div class="input-field">

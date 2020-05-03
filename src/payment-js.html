@@ -10,16 +10,25 @@
             format: 'yyyy-mm-dd',
         });
 
-        let tenantName = document.getElementById('tenant_name');
-
-        M.FormSelect.init(tenantName);
+        google.script.run.withSuccessHandler(tenantAutoComplete).loadTenant();
 
 
 
     });
 
+    function tenantAutoComplete(dataOption) {
+
+        let elems = document.getElementById('tenant_name');
+
+        M.Autocomplete.init(elems, {
+            data: dataOption,
+        });
+    }
+
 
     function buttonClickAction() {
+
+        google.script.run.withSuccessHandler(nameCheck).loadTenant();
 
         let toValidate = {
 
@@ -37,11 +46,7 @@
             if (!isValid) {
                 allValid = false;
             };
-        })
-
-        if (allValid) {
-            addPayment();
-        };
+        });
 
         function checkIfValid(elId, message) {
 
@@ -54,6 +59,22 @@
                     html: message
                 });
                 return false;
+            };
+        };
+
+        function nameCheck(dataOption) {
+
+            let nameValue = document.getElementById("tenant_name").value;
+            let position = Object.keys(dataOption).indexOf(nameValue);
+
+            if (position !== -1) {
+                if (allValid) {
+                    addPayment(); // 값을 입력해주는 함수
+                };
+            } else {
+                M.toast({
+                    html: "올바른 이름을 입력하세요."
+                });
             };
         };
 
@@ -76,8 +97,6 @@
         document.getElementById("amount").value = "";
         document.getElementById("payment_memo").value = "";
 
-        let tenantSelect = document.getElementById("tenant_name");
-        M.FormSelect.init(tenantSelect);
         M.updateTextFields();
 
     }

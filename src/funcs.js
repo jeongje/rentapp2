@@ -39,7 +39,7 @@ function submitContract(contractInfo) {
 
     let id = insertId("계약");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
-    let tenantNameValues = contractInfo.tenantNameValues.split(" ");
+    let tenantNameValues = contractInfo.tenantNameValues.split("_");
     let tenantId = tenantNameValues[0];
     let tenantName = tenantNameValues[1];
     
@@ -66,7 +66,7 @@ function submitPayment(paymentInfo) {
 
     let id = insertId("입금내역");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
-    let tenantNameValues = paymentInfo.tenantNameValues.split(" ");
+    let tenantNameValues = paymentInfo.tenantNameValues.split("_");
     let tenantId = tenantNameValues[0];
     let tenantName = tenantNameValues[1];
 
