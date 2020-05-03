@@ -1,8 +1,26 @@
+function insertId(sheetName) {
+
+    const ws = ss.getSheetByName(sheetName);
+    const a2 = ws.getRange("A2");
+    const aColumn = a2.getDataRegion(SpreadsheetApp.Dimension.ROWS);
+    const aValues = aColumn.getValues();
+    const aLastRow = aColumn.getLastRow();
+
+    let id = 1;
+
+    if (a2.getValue !== "") {
+        id = Number(aValues[aLastRow-1]) + 1;
+    };
+
+    return id;
+}
+
 
 function submitTenant(tenantInfo) {
 
     const ws = ss.getSheetByName("입주자");
-    let id = ws.getLastRow();
+
+    let id = insertId("입주자");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
 
     ws.appendRow([
@@ -18,7 +36,8 @@ function submitTenant(tenantInfo) {
 function submitContract(contractInfo) {
 
     const ws = ss.getSheetByName("계약");
-    let id = ws.getLastRow();
+
+    let id = insertId("계약");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
 
     ws.appendRow([
@@ -40,7 +59,8 @@ function submitContract(contractInfo) {
 function submitPayment(paymentInfo) {
 
     const ws = ss.getSheetByName("입금내역");
-    let id = ws.getLastRow();
+
+    let id = insertId("입금내역");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
 
     ws.appendRow([
@@ -57,7 +77,8 @@ function submitPayment(paymentInfo) {
 function submitBuilding(buildingInfo) {
 
     const ws = ss.getSheetByName("건물");
-    let id = ws.getLastRow();
+
+    let id = insertId("건물");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
 
     ws.appendRow([

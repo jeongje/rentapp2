@@ -17,10 +17,10 @@ function loadTenant() {
 
     const ws = ss.getSheetByName("입주자");
 
-    let tenantList = ws.getRange(2, 3, ws.getRange("C2").getDataRegion().getLastRow() - 1, 1).getValues();
+    let tenantList = ws.getRange(2, 1, ws.getRange("C2").getDataRegion().getLastRow() - 1, 4).getValues();
 
     let htmlArrayList = tenantList.map(function (tenant) {
-        let optionList = "<option>" + tenant[0] + "</option>";
+        let optionList = "<option>" + tenant[0] + " " + tenant[2] + " " + tenant[3].slice(-4) + "</option>";
         return optionList
     }).join("");
 
