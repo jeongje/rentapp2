@@ -39,11 +39,15 @@ function submitContract(contractInfo) {
 
     let id = insertId("계약");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
-
+    let tenantNameValues = contractInfo.tenantNameValues.split(" ");
+    let tenantId = tenantNameValues[0];
+    let tenantName = tenantNameValues[1];
+    
     ws.appendRow([
         id,
         date,
-        contractInfo.tenantName,
+        tenantId,
+        tenantName,
         contractInfo.building,
         contractInfo.unit,
         contractInfo.deposit,
@@ -62,11 +66,15 @@ function submitPayment(paymentInfo) {
 
     let id = insertId("입금내역");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
+    let tenantNameValues = paymentInfo.tenantNameValues.split(" ");
+    let tenantId = tenantNameValues[0];
+    let tenantName = tenantNameValues[1];
 
     ws.appendRow([
         id,
         date,
-        paymentInfo.tenantName,
+        tenantId,
+        tenantName,
         paymentInfo.paymentDate,
         paymentInfo.amount,
         paymentInfo.memo,
