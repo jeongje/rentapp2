@@ -22,10 +22,17 @@ function submitContract(contractInfo) {
 
     let id = insertId("계약");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
+    const startDateValue = 'INDIRECT("R[0]C[8]",FALSE)';
+    const endDateValue = 'INDIRECT("R[0]C[9]",FALSE)';
+    const conditionFormula = '=ifs(\
+        today()<' + startDateValue + ',"입주예정",\
+        and(' + startDateValue + '<=today(),today()<=' + endDateValue + '),"입주중",\
+        '+ endDateValue + '<today(),"계약종료")';
     
     ws.appendRow([
         id,
         date,
+        conditionFormula,
         contractInfo.name,
         contractInfo.phone,
         contractInfo.building,

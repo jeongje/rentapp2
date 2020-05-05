@@ -19,11 +19,15 @@ function loadTenant() {
 
     const ws = ss.getSheetByName("계약");
 
-    let tenantList = ws.getRange(2, 1, ws.getRange("C2").getDataRegion().getLastRow() - 1, 4).getValues();
+    let tenantList = ws.getRange(2, 1, ws.getRange("C2").getDataRegion().getLastRow() - 1, 5).getValues();    
 
     let dataOption = {}
     tenantList.forEach(function (tenant) {
-        let optionList = tenant[0] + "_" + tenant[2] + "_" + tenant[3].slice(-4);
+        const tenantId = tenant[0];
+        const tenantName = tenant[3];
+        const tenantPhone = tenant[4].slice(-4);
+
+        let optionList = tenantId + "_" + tenantName + "_" + tenantPhone;
         dataOption[optionList] = null;
     });
 
@@ -40,7 +44,9 @@ function loadBuilding() {
     let buildingList = ws.getRange(2, 3, ws.getRange("C2").getDataRegion().getLastRow() - 1, 1).getValues();
 
     let htmlArrayList = buildingList.map(function (building) {
-        let optionList = "<option>" + building[0] + "</option>";
+        const buildingId = building[0];
+
+        let optionList = "<option>" + buildingId + "</option>";
         return optionList
     }).join("");
 
