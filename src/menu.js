@@ -24,6 +24,17 @@ function paymentSidebar() {
 }
 
 
+function modifySidebar() {
+
+    let template = HtmlService.createTemplateFromFile("modify");
+    let html = template.evaluate();
+
+    html.setTitle("계약 수정");
+    SpreadsheetApp.getUi().showSidebar(html);
+
+}
+
+
 function buildingSidebar() {
 
     let template = HtmlService.createTemplateFromFile("building");
@@ -33,3 +44,5 @@ function buildingSidebar() {
     SpreadsheetApp.getUi().showSidebar(html);
 
 }
+
+

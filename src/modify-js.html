@@ -1,0 +1,79 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        document.getElementById("btn").addEventListener("click", buttonClickAction);
+        document.getElementById("tenant_name").addEventListener("change", inputChange);
+
+
+        let startDate = document.getElementById('start_date');
+        let endDate = document.getElementById('end_date');
+
+        M.Datepicker.init(startDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+        });
+
+        M.Datepicker.init(endDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+        });
+
+        google.script.run.withSuccessHandler(tenantAutoComplete).loadTenant();
+
+
+    });
+
+    function tenantAutoComplete(dataOption) {
+
+        let elems = document.getElementById('tenant_name');
+
+        M.Autocomplete.init(elems, {
+            data: dataOption,
+        });
+    }
+
+
+    function buttonClickAction() {
+        return true;
+    }
+
+
+
+    function inputChange(e) {
+
+
+        if (!e.isTrusted) {
+            tenantValues = document.getElementById("tenant_name").value;
+            google.script.run.withSuccessHandler(fillInput).bringContract(tenantValues);
+        } ;
+
+    }
+
+
+    function fillInput(contractData) {
+
+        let selectedData = JSON.parse(contractData);
+
+        const phone = selectedData[4];
+        const building = selectedData[5];
+        const unit = selectedData[6];
+        const deposit = selectedData[7];
+        const monthly = selectedData[8];
+        const maintenance_fee = selectedData[9];
+        const start_date = new Date(selectedData[10]);
+        const end_date = selectedData[11].slice(0,10);
+        const contract_memo = selectedData[12];
+
+        document.getElementById("phone").value = phone;
+        document.getElementById("building").value = building;
+        document.getElementById("unit").value = unit;
+        document.getElementById("deposit").value = deposit;
+        document.getElementById("monthly").value = monthly;
+        document.getElementById("maintenance_fee").value = maintenance_fee;
+        document.getElementById("start_date").value = start_date;
+        document.getElementById("end_date").value = end_date;
+        document.getElementById("contract_memo").value = contract_memo;
+        M.updateTextFields(); // 값이 들어갈 때 글씨가 올라가도록 하는데 사용함
+
+    }
+</script>

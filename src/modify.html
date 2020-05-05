@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?!= include("head"); ?>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col s12">
+
+                <div class="input-field">
+                    <input type="text" id="tenant_name" class="autocomplete" required>
+                    <label for="tenant_name">입주자(검색)</label>
+                </div>
+
+                <div class="input-field">
+                    <input disabled value="I am not editable" id="phone" type="text" class="validate" required>
+                    <label for="phone">핸드폰</label>
+                </div>
+
+                <div class="input-field">
+                    <input disabled value="I am not editable" id="building" type="text" class="validate" required>
+                    <label for="building">건물</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="unit" type="text" class="validate" pattern="^[0-9]+$" required>
+                    <label for="unit">호수</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="deposit" type="text" class="validate" pattern="^[0-9]+$" required>
+                    <label for="deposit">보증금</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="monthly" type="text" class="validate" pattern="^[0-9]+$" required>
+                    <label for="monthly">월세</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="maintenance_fee" type="text" class="validate" pattern="^[0-9]+$" required>
+                    <label for="maintenance_fee">관리비</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="start_date" type="text" class="datepicker" required>
+                    <label for="start_date">계약시작일</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="end_date" type="text" class="validate" required>
+                    <label for="end_date">계약종료일</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="contract_memo" class="materialize-textarea"></textarea>
+                    <label for="contract_memo">메모</label>
+                </div>
+                <div class="center-align">
+                    <button id="btn" class="btn waves-effect waves-light grey darken-1" type="submit" name="action">수정하기
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?!= include("modify-js"); ?>
+
+</body>
+
+</html>
