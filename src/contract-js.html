@@ -20,28 +20,18 @@
 
         M.FormSelect.init(building);
 
-        google.script.run.withSuccessHandler(tenantAutoComplete).loadTenant();
 
     });
-
-    function tenantAutoComplete(dataOption) {
-
-        let elems = document.getElementById('tenant_name');
-
-        M.Autocomplete.init(elems, {
-            data: dataOption,
-        });
-    }
 
 
 
     function buttonClickAction() {
 
-        google.script.run.withSuccessHandler(nameCheck).loadTenant();
 
         let toValidate = {
 
-            tenant_name: "입주자를 입력하세요.",
+            name: "입주자를 입력하세요.",
+            phone: "핸드폰을 입력하세요.",
             building: "건물을 입력하세요.",
             unit: "호수(숫자)를 입력하세요.",
             deposit: "보증금(숫자)을 입력하세요.",
@@ -62,6 +52,10 @@
             }
         });
 
+        if (allValid && phoneValidate()) {
+            addContract();
+        };
+
         function checkIfValid(elId, message) {
 
             let isValid = document.getElementById(elId).checkValidity();
@@ -77,21 +71,20 @@
         };
 
 
-        function nameCheck(dataOption) {
+        function phoneValidate() {
 
-            let nameValue = document.getElementById("tenant_name").value;
-            let position = Object.keys(dataOption).indexOf(nameValue);
+            let phoneValue = document.getElementById("phone").value;
+            var phoneno = /^\d{3}-\d{3,4}-\d{4}$/;
 
-            if (position !== -1) {
-                if (allValid) {
-                    addContract(); // 값을 입력해주는 함수
-                };
+            if (phoneValue.match(phoneno)) {
+                return true;
             } else {
                 M.toast({
-                    html: "올바른 이름을 입력하세요."
+                    html: "올바른 핸드폰 번호를 입력하세요."
                 });
-            };
-        };
+                return false;
+            }
+        }
 
     }
 
@@ -100,7 +93,8 @@
 
         let contractInfo = {};
 
-        contractInfo.tenantNameValues = document.getElementById("tenant_name").value;
+        contractInfo.name = document.getElementById("name").value;
+        contractInfo.phone = document.getElementById("phone").value;
         contractInfo.building = document.getElementById("building").value;
         contractInfo.unit = document.getElementById("unit").value;
         contractInfo.deposit = document.getElementById("deposit").value;
@@ -112,7 +106,8 @@
 
         google.script.run.submitContract(contractInfo);
 
-        document.getElementById("tenant_name").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
         document.getElementById("building").value = "";
         document.getElementById("unit").value = "";
         document.getElementById("deposit").value = "";

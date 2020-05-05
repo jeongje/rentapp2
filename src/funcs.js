@@ -16,38 +16,18 @@ function insertId(sheetName) {
 }
 
 
-function submitTenant(tenantInfo) {
-
-    const ws = ss.getSheetByName("입주자");
-
-    let id = insertId("입주자");
-    let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
-
-    ws.appendRow([
-        id,
-        date,
-        tenantInfo.name,
-        tenantInfo.phone,
-        tenantInfo.memo,
-    ]);
-
-}
-
 function submitContract(contractInfo) {
 
     const ws = ss.getSheetByName("계약");
 
     let id = insertId("계약");
     let date = Utilities.formatDate(new Date(), "GMT+9", "yyyy-MM-dd");
-    let tenantNameValues = contractInfo.tenantNameValues.split("_");
-    let tenantId = tenantNameValues[0];
-    let tenantName = tenantNameValues[1];
     
     ws.appendRow([
         id,
         date,
-        tenantId,
-        tenantName,
+        contractInfo.name,
+        contractInfo.phone,
         contractInfo.building,
         contractInfo.unit,
         contractInfo.deposit,

@@ -5,7 +5,6 @@ function onOpen(e) {
 
     SpreadsheetApp.getUi()
         .createMenu("입력 도구")
-        .addItem("입주자 입력", "tenantSidebar")
         .addItem("계약 입력", "contractSidebar")
         .addItem("입금내역 입력", "paymentSidebar")
         .addItem("건물 입력", "buildingSidebar")
@@ -18,7 +17,7 @@ function onOpen(e) {
 function loadTenant() {
     // autocomplete를 이용한 입주자 목록 전달 방식
 
-    const ws = ss.getSheetByName("입주자");
+    const ws = ss.getSheetByName("계약");
 
     let tenantList = ws.getRange(2, 1, ws.getRange("C2").getDataRegion().getLastRow() - 1, 4).getValues();
 
