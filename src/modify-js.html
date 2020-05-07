@@ -34,7 +34,50 @@
 
 
     function buttonClickAction() {
-        return true;
+
+        let toValidate = {
+
+            tenant_name: "입주자를 입력하세요.",
+            phone: "핸드폰을 입력하세요.",
+            building: "건물을 입력하세요.",
+            unit: "호수(숫자)를 입력하세요.",
+            deposit: "보증금(숫자)을 입력하세요.",
+            monthly: "월세(숫자)를 입력하세요.",
+            maintenance_fee: "관리비(숫자)를 입력하세요.",
+            start_date: "계약시작일을 입력하세요.",
+            end_date: "계약종료일을 입력하세요.",
+
+        }
+
+        let idKeys = Object.keys(toValidate);
+        let allValid = true;
+
+        idKeys.forEach(function (id) {
+            let isValid = checkIfValid(id, toValidate[id]);
+            if (!isValid) {
+                allValid = false;
+            }
+        });
+
+        if (allValid) {
+            changeContract();
+        };
+
+        function checkIfValid(elId, message) {
+
+            let isValid = document.getElementById(elId).checkValidity();
+
+            if (isValid) {
+                return true;
+            } else {
+                M.toast({
+                    html: message
+                });
+                return false;
+            };
+        };
+
+
     }
 
 
@@ -45,14 +88,21 @@
         if (!e.isTrusted) {
             tenantValues = document.getElementById("tenant_name").value;
             google.script.run.withSuccessHandler(fillInput).bringContract(tenantValues);
-        } ;
+        };
 
     }
 
+    // 값을 불러올 때 가져 온 Row위치를 다른 함수로 옮기기 위해 지정한 변수
+    // Local variable를 Global variable로 만들어 다른 local로 이동 
+    let contractRow;
 
     function fillInput(contractData) {
 
-        let selectedData = JSON.parse(contractData);
+        let selectedData = JSON.parse(contractData.info);
+        // Local 변수를 Global로 이동
+        contractRow = contractData.row;
+        console.log(contractRow);
+        console.log(contractData.row);
 
         const phone = selectedData[4];
         const building = selectedData[5];
@@ -60,8 +110,8 @@
         const deposit = selectedData[7];
         const monthly = selectedData[8];
         const maintenance_fee = selectedData[9];
-        const start_date = new Date(selectedData[10]);
-        const end_date = selectedData[11].slice(0,10);
+        const start_date = selectedData[10].slice(0, 10);
+        const end_date = selectedData[11].slice(0, 10);
         const contract_memo = selectedData[12];
 
         document.getElementById("phone").value = phone;
@@ -71,9 +121,45 @@
         document.getElementById("monthly").value = monthly;
         document.getElementById("maintenance_fee").value = maintenance_fee;
         document.getElementById("start_date").value = start_date;
+        M.Datepicker.getInstance(document.getElementById("start_date")).setDate(new Date(selectedData[10]));
         document.getElementById("end_date").value = end_date;
+        M.Datepicker.getInstance(document.getElementById("end_date")).setDate(new Date(selectedData[11]));
         document.getElementById("contract_memo").value = contract_memo;
         M.updateTextFields(); // 값이 들어갈 때 글씨가 올라가도록 하는데 사용함
+
+    }
+
+
+    function changeContract() {
+
+        let contractInfo = {};
+
+        contractInfo.row = contractRow;
+        contractInfo.tenantNameValues = document.getElementById("tenant_name").value;
+        contractInfo.phone = document.getElementById("phone").value;
+        contractInfo.building = document.getElementById("building").value;
+        contractInfo.unit = document.getElementById("unit").value;
+        contractInfo.deposit = document.getElementById("deposit").value;
+        contractInfo.monthly = document.getElementById("monthly").value;
+        contractInfo.maintenaceFee = document.getElementById("maintenance_fee").value;
+        contractInfo.startDate = document.getElementById("start_date").value;
+        contractInfo.endDate = document.getElementById("end_date").value;
+        contractInfo.memo = document.getElementById("contract_memo").value;
+
+        google.script.run.modifyContract(contractInfo);
+
+        document.getElementById("tenant_name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("building").value = "";
+        document.getElementById("unit").value = "";
+        document.getElementById("deposit").value = "";
+        document.getElementById("monthly").value = "";
+        document.getElementById("maintenance_fee").value = "";
+        document.getElementById("start_date").value = "";
+        document.getElementById("end_date").value = "";
+        document.getElementById("contract_memo").value = "";
+
+        M.updateTextFields();
 
     }
 </script>

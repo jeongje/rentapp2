@@ -65,11 +65,14 @@ function bringContract(tenantValues) {
     let tenantId = tenantValuesList[0];
     let tenantName = tenantValuesList[1];
 
-    // id랑 이름이 같은 행의 값들을 넘겨준다.
+    // id랑 이름이 같은 행의 값들을 넘겨준다. contractData가 2행부터 시작해서 행-1의 값이 i다.
     for (var i = 0; i < contractData.length; i++) {
 
         if (contractData[i][0] == tenantId && contractData[i][3] == tenantName) {
-            return JSON.stringify(contractData[i]);
+            return {
+                row: i,
+                info: JSON.stringify(contractData[i]),
+            };
         };
     }
 }
