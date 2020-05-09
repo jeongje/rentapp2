@@ -127,3 +127,23 @@ function bringPayment(paymentValues) {
 
     }
 }
+
+function getPaymentTableData(tenantValues) {
+
+    const ws = ss.getSheetByName("입금내역");
+    let paymentData = ws.getRange(2, 1, ws.getRange("A2").getDataRegion().getLastRow() - 1, 7).getValues();
+
+    let tenantValuesList = tenantValues.split('_');
+    let tenantId = tenantValuesList[0];
+    let tenantName = tenantValuesList[1];
+
+    tableData = [];
+    for (var i = 0; i < paymentData.length; i++) {
+
+        if (paymentData[i][2] == tenantId && paymentData[i][3] == tenantName) {
+            tableData.push([paymentData[i][0], paymentData[i][4], paymentData[i][5]]);
+        };
+    }    
+        
+    return JSON.stringify(tableData);
+}
