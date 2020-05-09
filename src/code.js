@@ -7,7 +7,9 @@ function onOpen(e) {
         .createMenu("입력 도구")
         .addItem("계약 입력", "contractSidebar")
         .addItem("입금내역 입력", "paymentSidebar")
-        .addItem("계약 수정", "modifySidebar")
+        .addItem("입주자별 입금내역", "paymentHistorySidebar")
+        .addItem("계약 수정", "contractModifySidebar")
+        .addItem("입금내역 수정", "paymentModifySidebar")
         .addItem("건물 입력", "buildingSidebar")
         .addToUi();
 

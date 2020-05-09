@@ -1,4 +1,3 @@
-
 function contractSidebar() {
 
     let template = HtmlService.createTemplateFromFile("contract");
@@ -24,15 +23,38 @@ function paymentSidebar() {
 }
 
 
-function modifySidebar() {
+function paymentHistorySidebar() {
 
-    let template = HtmlService.createTemplateFromFile("modify");
+    let template = HtmlService.createTemplateFromFile("paymenthistory");
+    let html = template.evaluate();
+
+    html.setTitle("입주자별 입금내역");
+    SpreadsheetApp.getUi().showSidebar(html);
+
+}
+
+
+function contractModifySidebar() {
+
+    let template = HtmlService.createTemplateFromFile("contractmodify");
     let html = template.evaluate();
 
     html.setTitle("계약 수정");
     SpreadsheetApp.getUi().showSidebar(html);
 
 }
+
+
+function paymentModifySidebar() {
+
+    let template = HtmlService.createTemplateFromFile("paymentmodify");
+    let html = template.evaluate();
+
+    html.setTitle("입금내역 수정");
+    SpreadsheetApp.getUi().showSidebar(html);
+
+}
+
 
 
 function buildingSidebar() {
@@ -44,5 +66,3 @@ function buildingSidebar() {
     SpreadsheetApp.getUi().showSidebar(html);
 
 }
-
-
