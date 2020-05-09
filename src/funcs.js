@@ -90,37 +90,22 @@ function submitBuilding(buildingInfo) {
 function modifyContract(contractInfo) {
 
     const ws = ss.getSheetByName("계약");
-    let contractData = ws.getRange(2, 1, ws.getRange("A2").getDataRegion().getLastRow() - 1, 13).getValues();
-    // let contractRange = ws.getRange(2, 1, ws.getRange("A2").getDataRegion().getLastRow() - 1, 13);
-    let row = contractInfo.row;
+    let row = contractInfo.row + 2;
 
-    Logger.log(contractData[row]);
+    let unitCell = ws.getRange(row, 7);
+    let depositCell = ws.getRange(row, 8);
+    let monthlyCell = ws.getRange(row, 9);
+    let maintenaceFeeCell = ws.getRange(row, 10);
+    let startDateCell = ws.getRange(row, 11);
+    let endDateCell = ws.getRange(row, 12);
+    let memoCell = ws.getRange(row, 13);
 
-    // let unitCell = contractData[row][6];
-    // let depositCell = contractData[row][7];
-    // let monthlyCell = contractData[row][8];
-    // let maintenaceFeeCell = contractData[row][9];
-    // let startDateCell = contractData[row][10];
-    // let endDateCell = contractData[row][11];
-    // let memoCell = contractData[row][12];
-
-
-    // unitCell.setValue(contractInfo.unit);
-    // depositCell.setValue(contractInfo.deposit);
-    // monthlyCell.setValue(contractInfo.monthly);
-    // maintenaceFeeCell.setValue(contractInfo.maintenaceFee);
-    // startDateCell.setValue(contractInfo.startDate);
-    // endDateCell.setValue(contractInfo.endDate);
-    // memoCell.setValue(contractInfo.memo);
-
-
-    // let selectedRange = ws.getRange(row, 1, 1, 13);
-    // let selectedData = ws.getRange(row, 1, 1, 13).getValues();
-
-    // let id = selectedData[0][0];
-    // let id = constractData[row][0];
-    // let date = constractData[row][1];
-
-
+    unitCell.setValue(contractInfo.unit);
+    depositCell.setValue(contractInfo.deposit);
+    monthlyCell.setValue(contractInfo.monthly);
+    maintenaceFeeCell.setValue(contractInfo.maintenaceFee);
+    startDateCell.setValue(contractInfo.startDate);
+    endDateCell.setValue(contractInfo.endDate);
+    memoCell.setValue(contractInfo.memo);
 
 }
