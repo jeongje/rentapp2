@@ -3,14 +3,18 @@ const ss = SpreadsheetApp.getActiveSpreadsheet()
 
 function onOpen(e) {
 
-    SpreadsheetApp.getUi()
-        .createMenu("입력 도구")
+    let ui = SpreadsheetApp.getUi();
+
+    ui.createMenu("입력 도구")
         .addItem("계약 입력", "contractSidebar")
         .addItem("입금내역 입력", "paymentSidebar")
-        .addItem("입주자별 입금내역", "paymentHistorySidebar")
-        .addItem("계약 수정", "contractModifySidebar")
-        .addItem("입금내역 수정", "paymentModifySidebar")
         .addItem("건물 입력", "buildingSidebar")
+        .addSeparator()
+        .addItem("입주자별 입금내역", "paymentHistorySidebar")
+        .addSeparator()
+        .addSubMenu(ui.createMenu('수정')
+            .addItem("계약 수정", "contractModifySidebar")
+            .addItem("입금내역 수정", "paymentModifySidebar"))
         .addToUi();
 
 }
@@ -113,7 +117,7 @@ function bringPayment(paymentValues) {
 
     // id랑 이름이 같은 행의 값들을 넘겨준다. paymentData가 2행부터 시작해서 행-1의 값이 i다.
     for (var i = 0; i < paymentData.length; i++) {
-        
+
         if (paymentData[i][0] == paymentId && paymentData[i][3] == paymentName) {
             return {
                 row: i,
