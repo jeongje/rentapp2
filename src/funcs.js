@@ -109,3 +109,18 @@ function modifyContract(contractInfo) {
     memoCell.setValue(contractInfo.memo);
 
 }
+
+function modifyPayment(paymentInfo) {
+
+    const ws = ss.getSheetByName("입금내역");
+    let row = paymentInfo.row + 2;
+
+    let paymentDateCell = ws.getRange(row, 5);
+    let amountCell = ws.getRange(row, 6);
+    let memoCell = ws.getRange(row, 7);
+
+    amountCell.setValue(paymentInfo.amount);
+    paymentDateCell.setValue(paymentInfo.paymentDate);
+    memoCell.setValue(paymentInfo.memo);
+
+}
