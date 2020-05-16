@@ -124,18 +124,28 @@
 
     }
 
+    //숫자 3개마다 콤마찍는 함수
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
 
     function addContract() {
 
         let contractInfo = {};
 
+        depositValue = document.getElementById("deposit").value;
+        monthlyValue = document.getElementById("monthly").value;
+        maintenaceFeeValue = document.getElementById("maintenance_fee").value;
+
+
         contractInfo.name = document.getElementById("name").value;
         contractInfo.phone = document.getElementById("phone").value;
         contractInfo.building = document.getElementById("building").value;
-        contractInfo.unit = document.getElementById("unit").value;
-        contractInfo.deposit = document.getElementById("deposit").value;
-        contractInfo.monthly = document.getElementById("monthly").value;
-        contractInfo.maintenaceFee = document.getElementById("maintenance_fee").value;
+        contractInfo.unit = document.getElementById("unit").value;        
+        contractInfo.deposit = numberWithCommas(depositValue);
+        contractInfo.monthly = numberWithCommas(monthlyValue);
+        contractInfo.maintenaceFee = numberWithCommas(maintenaceFeeValue);
         contractInfo.startDate = document.getElementById("start_date").value;
         contractInfo.endDate = document.getElementById("end_date").value;
         contractInfo.memo = document.getElementById("contract_memo").value;

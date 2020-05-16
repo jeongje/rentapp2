@@ -28,6 +28,7 @@ function submitContract(contractInfo) {
         today()<' + startDateValue + ',"입주예정",\
         and(' + startDateValue + '<=today(),today()<=' + endDateValue + '),"입주중",\
         ' + endDateValue + '<today(),"계약종료")';
+    
 
     ws.appendRow([
         id,

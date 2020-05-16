@@ -27,6 +27,29 @@
 
     }
 
+
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    };
+
+
+    //숫자 3개마다 콤마찍는 함수
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
     function generateTable(tableData) {
 
         let tbody = document.getElementById("table-body");
@@ -43,11 +66,11 @@
             tableData.forEach(function (r) {
                 var row = document.createElement("tr");
                 var col1 = document.createElement("td");
-                var col3 = document.createElement("td");
                 var col2 = document.createElement("td");
+                var col3 = document.createElement("td");
                 col1.textContent = r[0];
-                col2.textContent = r[1].slice(0, 10);
-                col3.textContent = r[2];
+                col2.textContent = formatDate(r[1]); // r[1].slice(0, 10) 를 하면 날짜가 하루 전으로 표시
+                col3.textContent = numberWithCommas(r[2]);
                 row.appendChild(col1);
                 row.appendChild(col2);
                 row.appendChild(col3);
@@ -56,7 +79,37 @@
             });
 
         };
+        
+
+        totalAmount = 0;
+        tableData.forEach(function (r) {
+            totalAmount += r[2];
+        });
+
+        var countRow = document.createElement("tr");
+        var countCol1 = document.createElement("td");
+        var countCol2 = document.createElement("td");
+        var countCol3 = document.createElement("td");
+        countCol1.textContent = "";
+        countCol2.textContent = "입금횟수";
+        countCol3.textContent = tableData.length;
+        countRow.appendChild(countCol1);
+        countRow.appendChild(countCol2);
+        countRow.appendChild(countCol3);
+        tbody.appendChild(countRow);
+
+
+        var totalRow = document.createElement("tr");
+        var totalCol1 = document.createElement("td");
+        var totalCol2 = document.createElement("td");
+        var totalCol3 = document.createElement("td");
+        totalCol1.textContent = "";
+        totalCol2.textContent = "총액";
+        totalCol3.textContent = numberWithCommas(totalAmount);
+        totalRow.appendChild(totalCol1);
+        totalRow.appendChild(totalCol2);
+        totalRow.appendChild(totalCol3);
+        tbody.appendChild(totalRow);
 
     }
-    
 </script>

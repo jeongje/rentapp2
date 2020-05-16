@@ -97,14 +97,22 @@
 
     }
 
+    //숫자 3개마다 콤마찍는 함수
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
 
     function addPayment() {
 
         let paymentInfo = {};
 
+        amountValue = document.getElementById("amount").value;
+
         paymentInfo.tenantNameValues = document.getElementById("tenant_name").value;
         paymentInfo.paymentDate = document.getElementById("payment_date").value;
-        paymentInfo.amount = document.getElementById("amount").value;
+        paymentInfo.amount = numberWithCommas(amountValue);
         paymentInfo.memo = document.getElementById("payment_memo").value;
 
         google.script.run.submitPayment(paymentInfo);
