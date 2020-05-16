@@ -41,6 +41,7 @@ function submitContract(contractInfo) {
         contractInfo.deposit,
         contractInfo.monthly,
         contractInfo.maintenaceFee,
+        contractInfo.contractDate,
         contractInfo.startDate,
         contractInfo.endDate,
         contractInfo.memo,
@@ -97,14 +98,16 @@ function modifyContract(contractInfo) {
     let depositCell = ws.getRange(row, 8);
     let monthlyCell = ws.getRange(row, 9);
     let maintenaceFeeCell = ws.getRange(row, 10);
-    let startDateCell = ws.getRange(row, 11);
-    let endDateCell = ws.getRange(row, 12);
-    let memoCell = ws.getRange(row, 13);
+    let contractDateCell = ws.getRange(row, 11);
+    let startDateCell = ws.getRange(row, 12);
+    let endDateCell = ws.getRange(row, 13);
+    let memoCell = ws.getRange(row, 14);
 
     unitCell.setValue(contractInfo.unit);
     depositCell.setValue(contractInfo.deposit);
     monthlyCell.setValue(contractInfo.monthly);
     maintenaceFeeCell.setValue(contractInfo.maintenaceFee);
+    contractDateCell.setValue(contractInfo.contractDate);
     startDateCell.setValue(contractInfo.startDate);
     endDateCell.setValue(contractInfo.endDate);
     memoCell.setValue(contractInfo.memo);

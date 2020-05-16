@@ -86,7 +86,7 @@ function loadBuilding() {
 function bringContract(tenantValues) {
 
     const ws = ss.getSheetByName("계약");
-    let contractData = ws.getRange(2, 1, ws.getRange("A2").getDataRegion().getLastRow() - 1, 13).getValues();
+    let contractData = ws.getRange(2, 1, ws.getRange("A2").getDataRegion().getLastRow() - 1, 14).getValues();
 
     let tenantValuesList = tenantValues.split('_');
     let tenantId = tenantValuesList[0];

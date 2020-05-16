@@ -3,8 +3,32 @@
 
         document.getElementById("btn").addEventListener("click", buttonClickAction);
 
+        let contractDate = document.getElementById('contract_date');
         let startDate = document.getElementById('start_date');
         let endDate = document.getElementById('end_date');
+
+        M.Datepicker.init(contractDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+            i18n: {
+                cancel: '취소',
+                done: '입력',
+                months: [
+                    '1월', '2월', '3월', '4월', '5월', '6월',
+                    '7월', '8월', '9월', '10월', '11월', '12월',
+                ],
+                monthsShort: [
+                    '1월', '2월', '3월', '4월', '5월', '6월',
+                    '7월', '8월', '9월', '10월', '11월', '12월',
+                ],
+                weekdaysShort: [
+                    '일', '월', '화', '수', '목', '금', '토',
+                ],
+                weekdaysAbbrev: [
+                    '일', '월', '화', '수', '목', '금', '토',
+                ],
+            },
+        });
 
         M.Datepicker.init(startDate, {
             autoClose: true,
@@ -73,6 +97,7 @@
             deposit: "보증금(숫자)을 입력하세요.",
             monthly: "월세(숫자)를 입력하세요.",
             maintenance_fee: "관리비(숫자)를 입력하세요.",
+            contract_date: "계약일을 입력하세요.",
             start_date: "계약시작일을 입력하세요.",
             end_date: "계약종료일을 입력하세요.",
 
@@ -146,6 +171,7 @@
         contractInfo.deposit = numberWithCommas(depositValue);
         contractInfo.monthly = numberWithCommas(monthlyValue);
         contractInfo.maintenaceFee = numberWithCommas(maintenaceFeeValue);
+        contractInfo.contractDate = document.getElementById("contract_date").value;
         contractInfo.startDate = document.getElementById("start_date").value;
         contractInfo.endDate = document.getElementById("end_date").value;
         contractInfo.memo = document.getElementById("contract_memo").value;
@@ -159,6 +185,7 @@
         document.getElementById("deposit").value = "";
         document.getElementById("monthly").value = "";
         document.getElementById("maintenance_fee").value = "";
+        document.getElementById("contract_date").value = "";
         document.getElementById("start_date").value = "";
         document.getElementById("end_date").value = "";
         document.getElementById("contract_memo").value = "";

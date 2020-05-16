@@ -5,8 +5,32 @@
         document.getElementById("tenant_name").addEventListener("change", inputChange);
 
 
+        let contractDate = document.getElementById('contract_date');
         let startDate = document.getElementById('start_date');
         let endDate = document.getElementById('end_date');
+
+        M.Datepicker.init(contractDate, {
+            autoClose: true,
+            format: 'yyyy-mm-dd',
+            i18n: {
+                cancel: '취소',
+                done: '입력',
+                months: [
+                    '1월', '2월', '3월', '4월', '5월', '6월',
+                    '7월', '8월', '9월', '10월', '11월', '12월',
+                ],
+                monthsShort: [
+                    '1월', '2월', '3월', '4월', '5월', '6월',
+                    '7월', '8월', '9월', '10월', '11월', '12월',
+                ],
+                weekdaysShort: [
+                    '일', '월', '화', '수', '목', '금', '토',
+                ],
+                weekdaysAbbrev: [
+                    '일', '월', '화', '수', '목', '금', '토',
+                ],
+            },
+        });
 
         M.Datepicker.init(startDate, {
             autoClose: true,
@@ -80,6 +104,7 @@
             deposit: "보증금(숫자)을 입력하세요.",
             monthly: "월세(숫자)를 입력하세요.",
             maintenance_fee: "관리비(숫자)를 입력하세요.",
+            contract_date: "계약일을 입력하세요.",
             start_date: "계약시작일을 입력하세요.",
             end_date: "계약종료일을 입력하세요.",
 
@@ -159,9 +184,10 @@
         const deposit = selectedData[7];
         const monthly = selectedData[8];
         const maintenance_fee = selectedData[9];
-        const start_date = selectedData[10];
-        const end_date = selectedData[11];
-        const contract_memo = selectedData[12];
+        const contract_date = selectedData[10];
+        const start_date = selectedData[11];
+        const end_date = selectedData[12];
+        const contract_memo = selectedData[13];
 
         document.getElementById("phone").value = phone;
         document.getElementById("building").value = building;
@@ -169,6 +195,8 @@
         document.getElementById("deposit").value = deposit;
         document.getElementById("monthly").value = monthly;
         document.getElementById("maintenance_fee").value = maintenance_fee;
+        document.getElementById("contract_date").value = formatDate(contract_date);
+        M.Datepicker.getInstance(document.getElementById("contract_date")).setDate(new Date(contract_date));
         document.getElementById("start_date").value = formatDate(start_date);
         M.Datepicker.getInstance(document.getElementById("start_date")).setDate(new Date(start_date));
         document.getElementById("end_date").value = formatDate(end_date);
@@ -192,6 +220,7 @@
         contractInfo.deposit = document.getElementById("deposit").value;
         contractInfo.monthly = document.getElementById("monthly").value;
         contractInfo.maintenaceFee = document.getElementById("maintenance_fee").value;
+        contractInfo.contractDate = document.getElementById("contract_date").value;
         contractInfo.startDate = document.getElementById("start_date").value;
         contractInfo.endDate = document.getElementById("end_date").value;
         contractInfo.memo = document.getElementById("contract_memo").value;
@@ -205,6 +234,7 @@
         document.getElementById("deposit").value = "";
         document.getElementById("monthly").value = "";
         document.getElementById("maintenance_fee").value = "";
+        document.getElementById("contract_date").value = "";
         document.getElementById("start_date").value = "";
         document.getElementById("end_date").value = "";
         document.getElementById("contract_memo").value = "";
